@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
+import GlobalStyle from './theme/GlobalStyle';
+import { theme } from './theme/mainTheme';
+import Header from './components/Header/Header';
+import Pantry from './views/Pantry';
+import ShoppingList from './views/ShoppingList';
+import Settings from './views/Settings';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/pantry" />} />
+          <Route path="/pantry" component={Pantry} />
+          <Route path="/shopping" component={ShoppingList} />
+          <Route path="/settings" component={Settings} />
+        </Switch>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
