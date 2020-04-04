@@ -3,12 +3,14 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import styled from 'styled-components';
 import CategoryIcon from '../CategoryIcon/CategoryIcon';
 import { icons } from '../../icons';
+import { appear } from '../../animations';
 
 const StyledWrapper = styled.div`
   border: 4px solid ${({ theme }) => theme.primary};
   border-radius: 12px;
   position: relative;
   box-shadow: 0 5px 10px ${({ theme }) => theme.primary};
+  animation: ${appear} 0.2s ease-in;
 `;
 
 const StyledContent = styled.div`
@@ -35,7 +37,7 @@ const StyledButtonIcon = styled.button`
 `;
 
 const ProductCard = ({
-  name, category, quantity, unit,
+  id, name, category, quantity, unit, removeItemFn,
 }) => (
   <StyledWrapper>
     <CategoryIcon icon={icons[category]} />
@@ -57,7 +59,7 @@ const ProductCard = ({
         {category}
       </p>
       <StyledButtonIcon><FaEdit /></StyledButtonIcon>
-      <StyledButtonIcon><FaTrashAlt /></StyledButtonIcon>
+      <StyledButtonIcon onClick={() => removeItemFn(id)}><FaTrashAlt /></StyledButtonIcon>
     </StyledContent>
   </StyledWrapper>
 );

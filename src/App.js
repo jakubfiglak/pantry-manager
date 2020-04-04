@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import {
   BrowserRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import AppContext from './context';
 import GlobalStyle from './theme/GlobalStyle';
 import { theme } from './theme/mainTheme';
@@ -14,18 +15,21 @@ import { categories, units } from './data';
 
 const dummyItems = [
   {
+    id: 1,
     name: 'bananas',
     category: 'fruitAndVeggies',
     quantity: '3',
     unit: 'kgs',
   },
   {
+    id: 2,
     name: 'beef',
     category: 'meat',
     quantity: '5',
     unit: 'kgs',
   },
   {
+    id: 3,
     name: 'yoghurt',
     category: 'dairy',
     quantity: '6',
@@ -40,10 +44,22 @@ class App extends Component {
     items: [...dummyItems],
   }
 
-  addItem = (e, newItem) => {
+  addItem = (e, item) => {
     e.preventDefault();
+
+    const id = uuidv4();
+
+    const newItem = {
+      id, ...item,
+    };
     this.setState((prevState) => ({
       items: [...prevState.items, newItem],
+    }));
+  };
+
+  removeItem = (id) => {
+    this.setState((prevState) => ({
+      items: prevState.items.filter((item) => item.id !== id),
     }));
   }
 
@@ -51,6 +67,7 @@ class App extends Component {
     const contextElements = {
       ...this.state,
       addItem: this.addItem,
+      removeItem: this.removeItem,
     };
 
     return (

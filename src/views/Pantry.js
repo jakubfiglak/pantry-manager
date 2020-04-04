@@ -45,15 +45,15 @@ class Pantry extends Component {
 
     return (
       <AppContext.Consumer>
-        {({ items }) => (
+        {({ items, removeItem }) => (
           <>
             <Heading>Your pantry</Heading>
             <SubHeading>Check your stock. Add and remove items.</SubHeading>
             <StyledWrapper>
               {items.map(({
-                name, category, quantity, unit,
+                name, category, quantity, unit, id,
               }) => (
-                <ProductCard name={name} category={category} quantity={quantity} unit={unit} />
+                <ProductCard name={name} category={category} quantity={quantity} unit={unit} id={id} key={id} removeItemFn={removeItem} />
               ))}
               <StyledButton onClick={this.openModal}><FaPlus /></StyledButton>
             </StyledWrapper>

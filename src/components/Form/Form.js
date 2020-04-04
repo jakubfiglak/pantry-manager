@@ -84,7 +84,7 @@ class Form extends Component {
               >
                 <option value="">Category</option>
                 {categories.map((cat) => (
-                  <option value={cat}>{cat}</option>
+                  <option value={cat} key={cat}>{cat}</option>
                 ))}
               </StyledInput>
               <StyledInputSet>
@@ -104,7 +104,7 @@ class Form extends Component {
                 >
                   <option value="">Unit</option>
                   {units.map((un) => (
-                    <option value={un}>{un}</option>
+                    <option value={un} key={un}>{un}</option>
                   ))}
                 </StyledInput>
               </StyledInputSet>
