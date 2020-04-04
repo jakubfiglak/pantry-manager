@@ -8,6 +8,7 @@ const StyledWrapper = styled.div`
   border: 4px solid ${({ theme }) => theme.primary};
   border-radius: 12px;
   position: relative;
+  box-shadow: 0 5px 10px ${({ theme }) => theme.primary};
 `;
 
 const StyledContent = styled.div`
@@ -33,15 +34,22 @@ const StyledButtonIcon = styled.button`
   }
 `;
 
-const ProductCard = ({ category, item, amount }) => (
+const ProductCard = ({
+  name, category, quantity, unit,
+}) => (
   <StyledWrapper>
     <CategoryIcon icon={icons[category]} />
     <StyledContent>
-      <h3>{item}</h3>
+      <h3>{name}</h3>
       <p>
         Amount:
         {' '}
-        {amount}
+        {quantity}
+      </p>
+      <p>
+        Unit:
+        {' '}
+        {unit}
       </p>
       <p>
         Category:
