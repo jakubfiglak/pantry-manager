@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "//jakubfiglak.github.io/pantry-manager/static/js/main.db542609.chunk.js",
-    "main.js.map": "//jakubfiglak.github.io/pantry-manager/static/js/main.db542609.chunk.js.map",
-    "runtime-main.js": "//jakubfiglak.github.io/pantry-manager/static/js/runtime-main.61c8675f.js",
-    "runtime-main.js.map": "//jakubfiglak.github.io/pantry-manager/static/js/runtime-main.61c8675f.js.map",
-    "static/js/2.acbae0c0.chunk.js": "//jakubfiglak.github.io/pantry-manager/static/js/2.acbae0c0.chunk.js",
-    "static/js/2.acbae0c0.chunk.js.map": "//jakubfiglak.github.io/pantry-manager/static/js/2.acbae0c0.chunk.js.map",
-    "index.html": "//jakubfiglak.github.io/pantry-manager/index.html",
-    "precache-manifest.338a5df301b1265a310a5af6b7bef4b1.js": "//jakubfiglak.github.io/pantry-manager/precache-manifest.338a5df301b1265a310a5af6b7bef4b1.js",
-    "service-worker.js": "//jakubfiglak.github.io/pantry-manager/service-worker.js",
-    "static/js/2.acbae0c0.chunk.js.LICENSE.txt": "//jakubfiglak.github.io/pantry-manager/static/js/2.acbae0c0.chunk.js.LICENSE.txt"
+    "main.js": "/pantry-manager/static/js/main.4b88cbf6.chunk.js",
+    "main.js.map": "/pantry-manager/static/js/main.4b88cbf6.chunk.js.map",
+    "runtime-main.js": "/pantry-manager/static/js/runtime-main.073fa4cc.js",
+    "runtime-main.js.map": "/pantry-manager/static/js/runtime-main.073fa4cc.js.map",
+    "static/js/2.0fa757d5.chunk.js": "/pantry-manager/static/js/2.0fa757d5.chunk.js",
+    "static/js/2.0fa757d5.chunk.js.map": "/pantry-manager/static/js/2.0fa757d5.chunk.js.map",
+    "index.html": "/pantry-manager/index.html",
+    "precache-manifest.374db6ad4fce5c4ba1c82aaa00d61a96.js": "/pantry-manager/precache-manifest.374db6ad4fce5c4ba1c82aaa00d61a96.js",
+    "service-worker.js": "/pantry-manager/service-worker.js",
+    "static/js/2.0fa757d5.chunk.js.LICENSE.txt": "/pantry-manager/static/js/2.0fa757d5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.61c8675f.js",
-    "static/js/2.acbae0c0.chunk.js",
-    "static/js/main.db542609.chunk.js"
+    "static/js/runtime-main.073fa4cc.js",
+    "static/js/2.0fa757d5.chunk.js",
+    "static/js/main.4b88cbf6.chunk.js"
   ]
 }
