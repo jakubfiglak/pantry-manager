@@ -14,44 +14,27 @@ import Settings from './views/Settings';
 import { categories, units } from './data';
 import Modal from './components/Modal/Modal';
 
-const dummyItems = [
-  {
-    id: 1,
-    name: 'bananas',
-    category: 'fruitAndVeggies',
-    quantity: '3',
-    unit: 'kgs',
-    minStock: '2',
-  },
-  {
-    id: 2,
-    name: 'beef',
-    category: 'meat',
-    quantity: '5',
-    unit: 'kgs',
-    minStock: '2',
-  },
-  {
-    id: 3,
-    name: 'yoghurt',
-    category: 'dairy',
-    quantity: '6',
-    unit: 'pcs',
-    minStock: '2',
-  },
-];
-
 class App extends Component {
   state = {
     categories: [...categories],
     units: [...units],
-    items: [...dummyItems],
+    items: [],
     isModalOpen: false,
     isEditModalOpen: false,
     isRemoveModalOpen: false,
     editedItemId: '',
     itemToRemoveId: '',
   };
+
+  componentDidMount() {
+    this.setState({
+      items: JSON.parse(localStorage.getItem('items')),
+    });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('items', JSON.stringify(this.state.items));
+  }
 
   openModal = () => {
     this.setState({
@@ -134,7 +117,7 @@ class App extends Component {
     }));
 
     this.closeRemoveModal();
-  }
+  };
 
   render() {
     const contextElements = {
