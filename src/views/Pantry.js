@@ -31,7 +31,7 @@ const Pantry = () => (
         <Heading>Your pantry</Heading>
         <SubHeading>Check your stock. Add and remove items.</SubHeading>
         <StyledWrapper>
-          {items.map(({
+          {items.length && items.map(({
             name, category, quantity, unit, id, minStock,
           }) => (
             <ProductCard
