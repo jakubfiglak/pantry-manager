@@ -37,7 +37,7 @@ const StyledButtonIcon = styled.button`
 `;
 
 const ProductCard = ({
-  id, name, category, quantity, unit, openEditModalFn, openRemoveModalFn,
+  id, name, category, quantity, unit, minStock, openEditModalFn, openRemoveModalFn,
 }) => (
   <StyledWrapper>
     <CategoryIcon icon={icons[category]} />
@@ -52,6 +52,11 @@ const ProductCard = ({
         Unit:
         {' '}
         {unit}
+      </p>
+      <p>
+        Min. stock:
+        {' '}
+        {minStock}
       </p>
       <p>
         Category:

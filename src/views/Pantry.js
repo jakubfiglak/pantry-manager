@@ -32,13 +32,14 @@ const Pantry = () => (
         <SubHeading>Check your stock. Add and remove items.</SubHeading>
         <StyledWrapper>
           {items.map(({
-            name, category, quantity, unit, id,
+            name, category, quantity, unit, id, minStock,
           }) => (
             <ProductCard
               name={name}
               category={category}
               quantity={quantity}
               unit={unit}
+              minStock={minStock}
               id={id}
               key={id}
               openEditModalFn={openEditModal}

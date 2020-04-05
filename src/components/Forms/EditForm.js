@@ -13,10 +13,10 @@ const StyledWrapper = styled.form`
 class EditForm extends Component {
   state = {
     quantity: '',
+    minStock: '',
   }
 
   handleInputChange = (e) => {
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -30,10 +30,10 @@ class EditForm extends Component {
           const id = context.editedItemId;
           const { name } = context.items.find((item) => item.id === id);
 
-          const { quantity } = this.state;
+          const { quantity, minStock } = this.state;
 
           return (
-            <StyledWrapper onSubmit={(e) => editQuantity(e, id, quantity)}>
+            <StyledWrapper onSubmit={(e) => editQuantity(e, id, quantity, minStock)}>
               <Heading>
                 Edit
                 {' '}
@@ -47,6 +47,14 @@ class EditForm extends Component {
                 min="0"
                 name="quantity"
                 value={quantity}
+                onChange={this.handleInputChange}
+              />
+              <Input
+                placeholder="Min. stock"
+                type="number"
+                min="0"
+                name="minStock"
+                value={minStock}
                 onChange={this.handleInputChange}
               />
               <Button type="submit" value="save changes" />

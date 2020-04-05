@@ -12,7 +12,7 @@ const StyledWrapper = styled.form`
 
 const StyledInputSet = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: repeat(3, 150px);
   gap: 20px;
 `;
 
@@ -21,6 +21,7 @@ class Form extends Component {
     name: '',
     category: '',
     quantity: '',
+    minStock: '',
     unit: '',
   }
 
@@ -36,7 +37,7 @@ class Form extends Component {
         {(context) => {
           const { categories, units, addItem } = context;
           const {
-            name, category, quantity, unit,
+            name, category, quantity, unit, minStock,
           } = this.state;
 
           return (
@@ -81,6 +82,14 @@ class Form extends Component {
                       <option value={un} key={un}>{un}</option>
                     ))}
                   </StyledInput>
+                  <StyledInput
+                    placeholder="Min. stock"
+                    type="number"
+                    min="0"
+                    name="minStock"
+                    value={minStock}
+                    onChange={this.handleInputChange}
+                  />
                 </StyledInputSet>
                 <StyledSubmitBtn type="submit" value="add" />
               </StyledWrapper>

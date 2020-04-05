@@ -21,6 +21,7 @@ const dummyItems = [
     category: 'fruitAndVeggies',
     quantity: '3',
     unit: 'kgs',
+    minStock: '2',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const dummyItems = [
     category: 'meat',
     quantity: '5',
     unit: 'kgs',
+    minStock: '2',
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const dummyItems = [
     category: 'dairy',
     quantity: '6',
     unit: 'pcs',
+    minStock: '2',
   },
 ];
 
@@ -103,13 +106,13 @@ class App extends Component {
     this.closeModal();
   };
 
-  editQuantity = (e, id, newQuantity) => {
+  editQuantity = (e, id, newQuantity, newMinStock) => {
     e.preventDefault();
 
     const { items } = this.state;
     const idx = items.findIndex((item) => item.id === id);
 
-    const editedItem = { ...items[idx], quantity: newQuantity };
+    const editedItem = { ...items[idx], quantity: newQuantity, minStock: newMinStock };
 
     this.setState((prevState) => ({
       items: prevState.items.map((item) => {
