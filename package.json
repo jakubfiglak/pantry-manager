@@ -1,6 +1,5 @@
 {
   "name": "pantry-manager",
-  "homepage": "https://jakubfiglak.github.io/pantry-manager",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
