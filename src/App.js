@@ -27,9 +27,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      items: JSON.parse(localStorage.getItem('items')),
-    });
+    if (localStorage.getItem('items') !== null && localStorage.getItem('items') !== 'null') {
+      this.setState({
+        items: JSON.parse((localStorage.getItem('items'))),
+      });
+    }
   }
 
   componentDidUpdate() {
