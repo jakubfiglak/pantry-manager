@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
-import Heading from '../Heading/Heading';
-import Button from '../Button/Button';
+import Button from '../Buttons/RoundButton';
 import { appear } from '../../animations';
-import Form from '../Form/Form';
+import Form from '../Forms/Form';
+import EditForm from '../Forms/EditForm';
+import RemoveForm from '../Forms/RemoveForm';
 
 const StyledModalOuter = styled.div`
   position: fixed;
@@ -34,12 +35,15 @@ const StyledButton = styled(Button)`
   right: 20px;
 `;
 
-const Modal = ({ closeModalFn }) => (
+const Modal = ({
+  closeModalFn, add, edit, remove,
+}) => (
   <StyledModalOuter>
     <StyledModalInner>
       <StyledButton small onClick={closeModalFn}><MdClose /></StyledButton>
-      <Heading>Add new item</Heading>
-      <Form />
+      {add && <Form />}
+      {edit && <EditForm />}
+      {remove && <RemoveForm />}
     </StyledModalInner>
   </StyledModalOuter>
 );

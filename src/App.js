@@ -12,6 +12,7 @@ import Pantry from './views/Pantry';
 import ShoppingList from './views/ShoppingList';
 import Settings from './views/Settings';
 import { categories, units } from './data';
+import Modal from './components/Modal/Modal';
 
 const dummyItems = [
   {
@@ -42,7 +43,50 @@ class App extends Component {
     categories: [...categories],
     units: [...units],
     items: [...dummyItems],
-  }
+    isModalOpen: false,
+    isEditModalOpen: false,
+    isRemoveModalOpen: false,
+    editedItemId: '',
+    itemToRemoveId: '',
+  };
+
+  openModal = () => {
+    this.setState({
+      isModalOpen: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
+
+  openEditModal = (id) => {
+    this.setState({
+      isEditModalOpen: true,
+      editedItemId: id,
+    });
+  };
+
+  closeEditModal = () => {
+    this.setState({
+      isEditModalOpen: false,
+    });
+  };
+
+  openRemoveModal = (id) => {
+    this.setState({
+      isRemoveModalOpen: true,
+      itemToRemoveId: id,
+    });
+  };
+
+  closeRemoveModal = () => {
+    this.setState({
+      isRemoveModalOpen: false,
+    });
+  };
 
   addItem = (e, item) => {
     e.preventDefault();
@@ -55,20 +99,55 @@ class App extends Component {
     this.setState((prevState) => ({
       items: [...prevState.items, newItem],
     }));
+
+    this.closeModal();
   };
 
-  removeItem = (id) => {
+  editQuantity = (e, id, newQuantity) => {
+    e.preventDefault();
+
+    const { items } = this.state;
+    const idx = items.findIndex((item) => item.id === id);
+
+    const editedItem = { ...items[idx], quantity: newQuantity };
+
+    this.setState((prevState) => ({
+      items: prevState.items.map((item) => {
+        if (item.id === id) {
+          return editedItem;
+        }
+        return item;
+      }),
+    }));
+
+    this.closeEditModal();
+  }
+
+  removeItem = (e, id) => {
+    e.preventDefault();
+
     this.setState((prevState) => ({
       items: prevState.items.filter((item) => item.id !== id),
     }));
+
+    this.closeRemoveModal();
   }
 
   render() {
     const contextElements = {
       ...this.state,
+      openModal: this.openModal,
+      closeModal: this.closeModal,
+      openEditModal: this.openEditModal,
+      closeEditModal: this.closeEditModal,
+      openRemoveModal: this.openRemoveModal,
+      closeRemoveModal: this.closeRemoveModal,
       addItem: this.addItem,
+      editQuantity: this.editQuantity,
       removeItem: this.removeItem,
     };
+
+    const { isModalOpen, isEditModalOpen, isRemoveModalOpen } = this.state;
 
     return (
       <BrowserRouter>
@@ -82,6 +161,9 @@ class App extends Component {
               <Route path="/shopping" component={ShoppingList} />
               <Route path="/settings" component={Settings} />
             </Switch>
+            {isModalOpen && <Modal add closeModalFn={this.closeModal} />}
+            {isEditModalOpen && <Modal edit closeModalFn={this.closeEditModal} />}
+            {isRemoveModalOpen && <Modal remove closeModalFn={this.closeRemoveModal} />}
           </ThemeProvider>
         </AppContext.Provider>
       </BrowserRouter>

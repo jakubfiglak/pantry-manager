@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaPlus } from 'react-icons/fa';
 import Heading from '../components/Heading/Heading';
 import SubHeading from '../components/SubHeading/SubHeading';
 import ProductCard from '../components/ProductCard/ProductCard';
-import Button from '../components/Button/Button';
-import Modal from '../components/Modal/Modal';
+import Button from '../components/Buttons/RoundButton';
 import AppContext from '../context';
 
 const StyledWrapper = styled.div`
@@ -23,46 +22,34 @@ const StyledButton = styled(Button)`
   right: 50px;
 `;
 
-class Pantry extends Component {
-  state = {
-    isModalOpen: false,
-  };
-
-  openModal = () => {
-    this.setState({
-      isModalOpen: true,
-    });
-  };
-
-  closeModal = () => {
-    this.setState({
-      isModalOpen: false,
-    });
-  };
-
-  render() {
-    const { isModalOpen } = this.state;
-
-    return (
-      <AppContext.Consumer>
-        {({ items, removeItem }) => (
-          <>
-            <Heading>Your pantry</Heading>
-            <SubHeading>Check your stock. Add and remove items.</SubHeading>
-            <StyledWrapper>
-              {items.map(({
-                name, category, quantity, unit, id,
-              }) => (
-                <ProductCard name={name} category={category} quantity={quantity} unit={unit} id={id} key={id} removeItemFn={removeItem} />
-              ))}
-              <StyledButton onClick={this.openModal}><FaPlus /></StyledButton>
-            </StyledWrapper>
-            {isModalOpen && <Modal closeModalFn={this.closeModal} />}
-          </>
-        )}
-      </AppContext.Consumer>
-    );
-  }
-}
+const Pantry = () => (
+  <AppContext.Consumer>
+    {({
+      items, openModal, openEditModal, openRemoveModal,
+    }) => (
+      <>
+        <Heading>Your pantry</Heading>
+        <SubHeading>Check your stock. Add and remove items.</SubHeading>
+        <StyledWrapper>
+          {items.map(({
+            name, category, quantity, unit, id,
+          }) => (
+            <ProductCard
+              name={name}
+              category={category}
+              quantity={quantity}
+              unit={unit}
+              id={id}
+              key={id}
+              openEditModalFn={openEditModal}
+              openRemoveModalFn={openRemoveModal}
+            />
+          ))}
+          <StyledButton onClick={openModal}><FaPlus /></StyledButton>
+        </StyledWrapper>
+      </>
+    )}
+  </AppContext.Consumer>
+);
 
 export default Pantry;

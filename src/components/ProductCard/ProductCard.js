@@ -37,7 +37,7 @@ const StyledButtonIcon = styled.button`
 `;
 
 const ProductCard = ({
-  id, name, category, quantity, unit, removeItemFn,
+  id, name, category, quantity, unit, openEditModalFn, openRemoveModalFn,
 }) => (
   <StyledWrapper>
     <CategoryIcon icon={icons[category]} />
@@ -58,8 +58,8 @@ const ProductCard = ({
         {' '}
         {category}
       </p>
-      <StyledButtonIcon><FaEdit /></StyledButtonIcon>
-      <StyledButtonIcon onClick={() => removeItemFn(id)}><FaTrashAlt /></StyledButtonIcon>
+      <StyledButtonIcon onClick={() => openEditModalFn(id)}><FaEdit /></StyledButtonIcon>
+      <StyledButtonIcon onClick={() => openRemoveModalFn(id)}><FaTrashAlt /></StyledButtonIcon>
     </StyledContent>
   </StyledWrapper>
 );
