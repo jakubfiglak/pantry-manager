@@ -136,7 +136,7 @@ class App extends Component {
     const { isModalOpen, isEditModalOpen, isRemoveModalOpen } = this.state;
 
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AppContext.Provider value={contextElements}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
