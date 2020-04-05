@@ -19,7 +19,6 @@ class App extends Component {
     categories: [...categories],
     units: [...units],
     items: [],
-    shoppingList: [],
     isModalOpen: false,
     isEditModalOpen: false,
     isRemoveModalOpen: false,
@@ -33,12 +32,8 @@ class App extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     localStorage.setItem('items', JSON.stringify(this.state.items));
-
-    if (prevState.items.length !== this.state.items.length) {
-      this.generateShoppingList();
-    }
   }
 
   openModal = () => {
@@ -124,17 +119,6 @@ class App extends Component {
     this.closeRemoveModal();
   };
 
-  generateShoppingList = () => {
-    const { items } = this.state;
-    const itemsToBuy = items.filter((item) => parseInt(item.quantity) < parseInt(item.minStock));
-
-    this.setState({
-      shoppingList: [...itemsToBuy],
-    });
-
-    console.log(itemsToBuy);
-  }
-
   render() {
     const contextElements = {
       ...this.state,
@@ -144,7 +128,6 @@ class App extends Component {
       closeEditModal: this.closeEditModal,
       openRemoveModal: this.openRemoveModal,
       closeRemoveModal: this.closeRemoveModal,
-      generateShoppingList: this.generateShoppingList,
       addItem: this.addItem,
       editQuantity: this.editQuantity,
       removeItem: this.removeItem,

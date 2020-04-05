@@ -17,7 +17,9 @@ const StyledListElement = styled.li`
 
 const List = ({ list }) => (
   <StyledListWrapper>
-    {list.map((el) => (
+    {list.map((el) => (typeof (el) === 'string' ? (
+      <StyledListElement key={el}>{el}</StyledListElement>
+    ) : (
       <StyledListElement key={el.id}>
         {el.name}
         {' '}
@@ -27,7 +29,7 @@ const List = ({ list }) => (
         {' '}
         {el.unit}
       </StyledListElement>
-    ))}
+    )))}
   </StyledListWrapper>
 );
 

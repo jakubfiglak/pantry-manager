@@ -6,13 +6,17 @@ import AppContext from '../context';
 
 const ShoppingList = () => (
   <AppContext.Consumer>
-    {({ shoppingList }) => (
-      <>
-        <Heading>Your shopping list</Heading>
-        <SubHeading>Let's go shopping!</SubHeading>
-        <List list={shoppingList} />
-      </>
-    )}
+    {({ items }) => {
+      const itemsToBuy = items.filter((item) => parseInt(item.quantity) < parseInt(item.minStock));
+
+      return (
+        <>
+          <Heading>Your shopping list</Heading>
+          <SubHeading>Let's go shopping!</SubHeading>
+          <List list={itemsToBuy} />
+        </>
+      );
+    }}
   </AppContext.Consumer>
 );
 
