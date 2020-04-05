@@ -15,11 +15,19 @@ const StyledListElement = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.gray};
 `;
 
-const List = () => (
+const List = ({ list }) => (
   <StyledListWrapper>
-    <StyledListElement>bananas - 3 pcs</StyledListElement>
-    <StyledListElement>apples - 3 kgs</StyledListElement>
-    <StyledListElement>milk - 3 litres</StyledListElement>
+    {list.map((el) => (
+      <StyledListElement key={el.id}>
+        {el.name}
+        {' '}
+        -
+        {' '}
+        {el.minStock - el.quantity}
+        {' '}
+        {el.unit}
+      </StyledListElement>
+    ))}
   </StyledListWrapper>
 );
 
